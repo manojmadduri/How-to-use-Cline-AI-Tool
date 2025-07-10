@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClineAI Setup Guide | ThoughtBite</title>
+  <style>
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .container { width: 90%; max-width: 960px; margin: 0 auto; padding: 100px 0 40px; }
+
+    /* Header */
+    header {
+      background: #fff;
+      padding: 15px 0;
+      position: fixed;
+      width: 100%; top: 0; left: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .header-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { width: 50px; height: 50px; }
+    .logo h1 { font-size: 1.6rem; color: #0073e6; }
+    nav a {
+      text-decoration: none; color: #333; margin-left: 20px; font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #0073e6; }
+
+    /* Sections */
+    section { padding: 60px 0; }
+    section:nth-child(even) { background: #fff; }
+    section:nth-child(odd) { background: #f9f9f9; }
+    h2, h3 { text-align: center; margin-bottom: 20px; color: #0073e6; }
+    h2 { font-size: 2.25rem; }
+    h3 { font-size: 1.75rem; }
+    p { margin-bottom: 15px; }
+
+    /* Hero */
+    .hero { text-align: center; position: relative; }
+    .hero::after {
+      content: '';
+      position: absolute; top: 50%; left: 50%; width: 700px; height: 700px;
+      background: rgba(0,115,230,0.1); border-radius: 50%; transform: translate(-50%,-50%);
+      z-index: -1;
+    }
+    .hero .highlight { display: inline-block; background: #0073e6; color: #fff; padding: 8px 16px; border-radius: 4px; margin-bottom: 20px; }
+    .cta { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
+    .cta-button {
+      background: #0073e6; color: #fff; padding: 12px 24px; text-decoration: none;
+      border-radius: 4px; font-weight: 600; transition: background 0.3s;
+    }
+    .cta-button:hover { background: #005bb5; }
+    .download-link { color: #0073e6; align-self: center; font-weight: 500; }
+    .download-link:hover { text-decoration: underline; }
+    .hero img { width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: #fff; padding: 20px; border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px); box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .feature-card img { width: 100%; height: auto; border-radius: 4px; margin-bottom: 10px; }
+    .feature-card h4 { color: #005bb5; margin-bottom: 8px; }
+
+    /* Guide Steps */
+    .guide-step {
+      background: #fff; padding: 20px; border-left: 4px solid #0073e6;
+      border-radius: 4px; margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .guide-step:hover { transform: translateX(5px); }
+    .guide-step img { width: 100%; max-width: 600px; margin: 15px auto; display: block; border-radius: 4px; }
+    .step-number { font-size: 1.1rem; font-weight: 700; color: #0073e6; margin-bottom: 8px; }
+    .highlight-text { background: #fffae6; padding: 6px 12px; border-left: 4px solid #ffc107; display: inline-block; }
+
+    /* Floating Icons */
+    .fixed-icons { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 15px; }
+    .fixed-icons img { width: 40px; height: 40px; cursor: pointer; transition: transform 0.3s; }
+    .fixed-icons img:hover { transform: scale(1.1); }
+
+    /* Animations */
+    .animate { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+    .in-view { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .container { padding-top: 80px; }
+      h2 { font-size: 1.75rem; }
+      h3 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo animate in-view">
+        <img src="https://yt3.googleusercontent.com/pzsoAprJDl6Fnrapr8e0AycaayzEUWOFMpJrKRQg4GgnAJhfrDWksmLLmA-g6Ig3mjVC6VwYigI=s160-c-k-c0x00ffffff-no-rj" alt="Logo">
+        <h1>ThoughtBite</h1>
+      </div>
+      <nav class="animate in-view">
+        <a href="#features">Features</a>
+        <a href="#guide">Guide</a>
+        <a href="#footer">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero animate" id="hero">
+      <h2>Welcome to ClineAI Setup</h2>
+      <p class="highlight">Your free AI coding partner powered by Google Gemini</p>
+      <div class="cta">
+        <a href="#guide" class="cta-button">Get Started</a>
+        <a href="https://docs.google.com/document/d/1h0HfgdeZSfSqhMHRTQX5Wzdsalrjr9Ss/edit" target="_blank" class="download-link">Download Instructions</a>
+      </div>
+      <img src="https://images.unsplash.com/photo-1581276879432-15a7c16e2c9d?auto=format&fit=crop&w=800&q=80" alt="Coding with AI">
+    </section>
+    <section id="features">
+      <h3 class="animate">Key Features</h3>
+      <div class="features-grid">
+        <div class="feature-card animate">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Write Code">
+          <h4>Write New Code</h4>
+          <p>Generate functions, classes, and full applications from plain text.</p>
+        </div>
+        <div class="feature-card animate">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="Fix Bugs">
+          <h4>Fix Bugs</h4>
+          <p>Automatically detect and resolve errors in your codebase.</p>
+        </div>
+        <div class="feature-card animate">
+          <img src="https://images.unsplash.com/photo-1517430816045-df4b7de168a5?auto=format&fit=crop&w=400&q=80" alt="Test Cases">
+          <h4>Generate Test Cases</h4>
+          <p>Create comprehensive tests to ensure reliability.</p>
+        </div>
+        <div class="feature-card animate">
+          <img src="https://images.unsplash.com/photo-1581092580497-2f8b4c0995fd?auto=format&fit=crop&w=400&q=80" alt="Start Projects">
+          <h4>Start Projects</h4>
+          <p>Initialize projects with best practices and structure.</p>
+        </div>
+      </div>
+    </section>
+    <section id="guide">
+      <h3 class="animate">Step-by-Step Guide</h3>
+      <div class="guide-step animate">
+        <p class="step-number">1. Install Extension</p>
+        <p>Open VS Code → Extensions (Ctrl+Shift+X) → Search 'Cline-AI' → Install</p>
+        <img src="https://code.visualstudio.com/assets/docs/editor/extension-gallery/extensions-view-icon.png" alt="Extensions Panel">
+      </div>
+      <div class="guide-step animate">
+        <p class="step-number">2. Open Cline Panel</p>
+        <p>Click the Cline robot icon in the sidebar to access settings.</p>
+        <img src="https://via.placeholder.com/600x300?text=Cline+Settings" alt="Settings Panel">
+      </div>
+      <div class="guide-step animate">
+        <p class="step-number">3. Select API Provider</p>
+        <p>In API Configuration, choose <span class="highlight-text">Google Gemini</span> for free tier.</p>
+      </div>
+      <div class="guide-step animate">
+        <p class="step-number">4. Obtain API Key</p>
+        <p>Search 'Google Gemini API Key' → Google AI Studio → Create & copy your key.</p>
+        <img src="https://developers.google.com/static/ai/images/aistudio_get_api_key.png" alt="Get API Key">
+      </div>
+      <div class="guide-step animate">
+        <p class="step-number">5. Configure in VS Code</p>
+        <p>Paste your key into the API field and select model <strong>gemini-2.0-flash-thinking-exp-1219</strong>.</p>
+      </div>
+      <div class="guide-step animate">
+        <p class="step-number">6. Start Coding</p>
+        <p>Use prompts like <span class="highlight-text">"understand the codebase"</span> to get started.</p>
+      </div>
+    </section>
+  </main>
+  <div class="fixed-icons">
+    <a href="https://www.instagram.com/thethoughtbite" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
+    <a href="https://www.youtube.com/@thethoughtbite" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+  </div>
+  <footer id="footer">
+    <div class="container" style="text-align:center; padding:20px 0; color:#666; font-size:0.9rem;">
+      <p>© 2025 ThoughtBite. Made with ❤️ for developers.</p>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('in-view');
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
